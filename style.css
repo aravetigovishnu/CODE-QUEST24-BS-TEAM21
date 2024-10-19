@@ -1,0 +1,82 @@
+/* Typography and overall page theme */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Make body full height */
+    background: url('{{ url_for('static', filename='rgm.jpg') }}') no-repeat center center fixed;
+    background-size: cover; /* Ensure the image covers the entire background */
+    color: white; /* Set text color to white for contrast */
+}
+
+.container {
+    text-align: center;
+    margin: 50px auto;
+    max-width: 900px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #002855;
+    margin-bottom: 20px;
+}
+
+/* Button container styling for flexbox */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+/* Button styling */
+.year-button {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    background-color: #004080;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.year-button:hover {
+    background-color: #002855;
+}
+
+/* "View All Results" button */
+.view-results {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #E63946; /* Slight red */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for View All Results */
+.view-results:hover {
+    background-color: #d62828;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    .year-button, .view-results {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

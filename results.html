@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Students Results for {{ top_students['Year'].iloc[0] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+        tr:nth-child(even) td {
+            background-color: #f1f1f1;
+        }
+        tr:hover td {
+            background-color: #f5f5f5;
+        }
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        a.button:hover {
+            background-color: #45a049;
+        }
+        .ranking {
+            font-weight: bold;
+            color: #FF5722;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Top 3 Students for Year {{ top_students['Year'].iloc[0] }}</h1>
+
+        <table>
+            <tr>
+                <th>Student Name</th>
+                <th>Predicted Score</th>
+                <th>Rank</th>
+            </tr>
+            {% for student in top_students.itertuples() %}
+            <tr>
+                <td>{{ student.Student_name }}</td>
+                <td>{{ student.Predicted_Score }}</td>
+                <td class="ranking">{{ student.Rank | int }}</td> <!-- Highlight rank -->
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="/" class="button">Go Back</a>
+    </div>
+</body>
+</html>

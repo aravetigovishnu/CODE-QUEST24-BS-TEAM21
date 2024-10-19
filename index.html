@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Students</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* General styles for page typography and theme */
+        body {
+            background-image: url('{{ url_for("static", filename="image/background.png") }}');
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6); 
+            z-index: 1;
+        }
+        .container {
+            position: relative;
+            z-index: 2; 
+            text-align: center;
+            padding: 40px;
+            max-width: 900px;
+            background-color: rgba(255, 255, 255, 0.8); 
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin: 50px auto; 
+        }
+        h1 {
+            font-size: 3em;
+            color: #002855;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .year-button {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: 500;
+            color: white;
+            background-color: #004080;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .year-button:hover {
+            background-color: #002855;
+        }
+        .view-results {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #E63946;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .view-results:hover {
+            background-color: #d62828;
+        }
+        @media (max-width: 600px) {
+            .year-button, .view-results {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <div class="container">
+        <h1>Top Students from Each Year</h1>
+
+        <ul class="year-list">
+            {% for year in top_students['Year'].unique() %}
+    
+                    <a href="{{ url_for('year_results', year=year) }}" class="year-button">{{ year }}</a>
+            {% endfor %}
+        </ul>
+
+        <a href="/results" class="view-results">View All Results</a>
+    </div>
+</body>
+</html>
